@@ -1,3 +1,26 @@
+.relative {
+ position: relative;
+ background-color: #fff;
+ margin: 10px;
+} 
+
+.horizontal {
+  display: inline-block;
+  width: 70px; 
+  height: 30px; 
+  text-align: center;
+  border: gray;
+  background-color: #E8562A;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left:10px;
+}
+
+.selected {
+  background-color: #A8162A;
+}
+
 .App {
   text-align: center;
 }
