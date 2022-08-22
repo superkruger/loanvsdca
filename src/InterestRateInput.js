@@ -10,8 +10,15 @@ export default function LoanInput (props) {
 
 
 	function handleInputChanged (event) {
-		setInterestRate(event.target.value)
-		setInputAmount(event.target.value)
+		event.preventDefault()
+
+		let value = event.target.value
+
+
+		if (value.match(/^[0-9]+$/)) {
+			setInterestRate(value)
+			setInputAmount(value)
+		}
 	}
 
 	function handleInputClicked () {

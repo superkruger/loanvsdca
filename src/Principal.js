@@ -11,8 +11,9 @@ export default function Principal () {
 			</td>
 			<td className="right">
 				<LoanButton amount={10000}/>
-				<LoanButton amount={20000}/>
+				<LoanButton amount={25000}/>
 				<LoanButton amount={50000}/>
+				<LoanButton amount={100000}/>
 				<LoanInput/>
 			</td>
 		</>

@@ -109,7 +109,7 @@ export default function Calculator () {
 					<p>Total loan cost: ${(repayment * term * 12).toFixed(2)}</p>
 					<p>BTC amount with loan: {(loanAmount / btcPrice).toFixed(2)}</p>
 					<p>BTC amount with DCA: {dcaBtcAmount}</p>
-					<p>Loan yield over DCA: <span className={differentialClass}>{((differential - 1) * 100).toFixed(2)}%</span></p>
+					<p>Loan yield over DCA: <span className={differentialClass}>{((differential * 100)-100).toFixed(2)}%</span></p>
 				  </>
 			}
 			

@@ -18,9 +18,7 @@ export default function LoanInput (props) {
 		if (value.match(/^[0-9]+$/)) {
 			setLoanAmount(value)
 			setInputAmount(value)
-		}
-
-		
+		}	
 	}
 
 	function handleInputClicked () {

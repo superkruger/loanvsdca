@@ -9,9 +9,10 @@ export default function Cagr () {
 				<span>Bitcoin CAGR</span>
 			</td>
 			<td className="right">
-				<CagrButton amount={20}/>
 				<CagrButton amount={40}/>
-				<CagrButton amount={60}/>
+				<CagrButton amount={80}/>
+				<CagrButton amount={120}/>
+				<CagrButton amount={160}/>
 				<CagrInput/>
 			</td>
 		</>

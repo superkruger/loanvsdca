@@ -9,7 +9,8 @@ export default function InterestRate () {
 				<span>Interest Rate</span>
 			</td>
 			<td className="right">
-				<InterestRateButton amount={7.5}/>
+				<InterestRateButton amount={6}/>
+				<InterestRateButton amount={9}/>
 				<InterestRateButton amount={12}/>
 				<InterestRateButton amount={15}/>
 				<InterestRateInput/>

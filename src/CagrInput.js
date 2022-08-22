@@ -10,8 +10,15 @@ export default function TermInput (props) {
 
 
 	function handleInputChanged (event) {
-		setCagr(event.target.value)
-		setInputAmount(event.target.value)
+		event.preventDefault()
+
+		let value = event.target.value
+
+
+		if (value.match(/^[0-9]+$/)) {
+			setCagr(value)
+			setInputAmount(value)
+		}
 	}
 
 	function handleInputClicked () {

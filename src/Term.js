@@ -10,8 +10,9 @@ export default function Term () {
 			</td>
 			<td className="right">
 				<TermButton amount={5}/>
-				<TermButton amount={12}/>
-				<TermButton amount={15}/>
+				<TermButton amount={6}/>
+				<TermButton amount={7}/>
+				<TermButton amount={8}/>
 				<TermInput/>
 			</td>
 		</>
