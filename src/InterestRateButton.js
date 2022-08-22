@@ -6,7 +6,7 @@ export default function InterestRateButton (props) {
 
 	const {amount} = props
 	const {interestRate, setInterestRate} = useContext(InterestRateContext)
-	const cls = clsx({horizontal: true, selected: interestRate === amount})
+	const cls = clsx({horizontalbutton: true, selected: interestRate === amount})
 
 	function handleButtonClicked () {
 		setInterestRate(amount)

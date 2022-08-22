@@ -1,14 +1,19 @@
 import TermButton from "./TermButton"
+import TermInput from "./TermInput"
 
 export default function Term () {
 
 	return (
-		<div className="relative">
-			<p>
+		<>
+			<td className="left">
+				<span>Term</span>
+			</td>
+			<td className="right">
 				<TermButton amount={5}/>
 				<TermButton amount={12}/>
 				<TermButton amount={15}/>
-			</p>
-		</div>
+				<TermInput/>
+			</td>
+		</>
 	)
 }

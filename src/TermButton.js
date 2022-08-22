@@ -6,7 +6,7 @@ export default function TermButton (props) {
 
 	const {amount} = props
 	const {term, setTerm} = useContext(TermContext)
-	const cls = clsx({horizontal: true, selected: term === amount})
+	const cls = clsx({horizontalbutton: true, selected: term === amount})
 
 	function handleButtonClicked () {
 		setTerm(amount)

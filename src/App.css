@@ -4,7 +4,21 @@
  margin: 10px;
 } 
 
-.horizontal {
+.column {
+  display: inline-block;
+  text-align: center;
+  margin-left:10px;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.horizontalbutton {
   display: inline-block;
   width: 70px; 
   height: 30px; 
@@ -17,8 +31,31 @@
   margin-left:10px;
 }
 
+.horizontalinput {
+  display: inline-block;
+  width: 150px; 
+  height: 27px; 
+  text-align: center;
+  border: gray;
+  background-color: #E8562A;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left:10px;
+}
+
 .selected {
   background-color: #A8162A;
+}
+
+.red {
+  color: red;
+  font-weight: bold;
+}
+
+.green {
+  color: green;
+  font-weight: bold;
 }
 
 .App {
