@@ -1,11 +1,14 @@
 import {useState, useEffect} from "react"
 import clsx from "clsx"
-import Principal from "./Principal"
+import {Container, Row, Col, Form} from 'react-bootstrap'
+
+import Loan from "./Loan"
 import InterestRate from "./InterestRate"
 import Term from "./Term"
 import Cagr from "./Cagr"
-import {PrincipalContext, InterestRateContext, TermContext, CagrContext} from "./Context"
+import {LoanContext, InterestRateContext, TermContext, CagrContext} from "./Context"
 
+const LOANCOST = 1.0615
 
 export default function Calculator () {
 	const [error, setError] = useState(null);
@@ -57,13 +60,15 @@ export default function Calculator () {
 
 	function calculateRepayment() {
 
-		if (!loanAmount || !interestRate || !term) {
+		if (!loanAmount || !interestRate || !term || !cagr) {
 			return
 		}
 
+		let loanWithCost = loanAmount * LOANCOST
+
 		const periods = term * 12
 		const interestRatePerPeriod = interestRate / 12 / 100
-		const payment = (loanAmount * (interestRatePerPeriod / (1 - Math.pow(1 + interestRatePerPeriod, -periods)))).toFixed(2);
+		const payment = (loanWithCost * (interestRatePerPeriod / (1 - Math.pow(1 + interestRatePerPeriod, -periods)))).toFixed(2);
 
 		repayment = payment
 		calculateDCA(payment)
@@ -73,43 +78,40 @@ export default function Calculator () {
 
 	return (
 		<>
-			<table className="column">
-			<tbody>
-			<tr>
-			<PrincipalContext.Provider value={{loanAmount, setLoanAmount}}>
-				<Principal />
-			</PrincipalContext.Provider>
-			</tr>
-			<tr>
+			<Form>
+			<Container>
+			
+			<LoanContext.Provider value={{loanAmount, setLoanAmount}}>
+				<Loan />
+			</LoanContext.Provider>
+		
 			<InterestRateContext.Provider value={{interestRate, setInterestRate}}>
 				<InterestRate />
 			</InterestRateContext.Provider>
-			</tr>
-			<tr>
+		
 			<TermContext.Provider value={{term, setTerm}}>
 				<Term />
 			</TermContext.Provider>
-			</tr>
-			<tr>
+		
 			<CagrContext.Provider value={{cagr, setCagr}}>
 				<Cagr />
 			</CagrContext.Provider>
-			</tr>
-			</tbody>
-			</table>
+			
+			</Container>
+			</Form>
 			<p>BTC Price: ${btcPrice}</p>
 			{/*<p>Loan Amount: ${loanAmount}</p>
 			<p>Interest Rate: {interestRate}%</p>
 			<p>Term: {term} years</p>*/}
 
-			{!loanAmount || !interestRate || !term || isNaN(differential) || !(typeof differential === 'number') || !Number.isFinite(differential)
+			{!loanAmount || !interestRate || !term || !cagr || isNaN(differential) || !(typeof differential === 'number') || !Number.isFinite(differential)
 				? <></>
 				: <>
 					<p>Monthly repayment: ${repayment}</p>
 					<p>Total loan cost: ${(repayment * term * 12).toFixed(2)}</p>
-					<p>BTC amount with loan: {(loanAmount / btcPrice).toFixed(2)}</p>
-					<p>BTC amount with DCA: {dcaBtcAmount}</p>
-					<p>Loan yield over DCA: <span className={differentialClass}>{((differential * 100)-100).toFixed(2)}%</span></p>
+					<h5>BTC amount with loan: {(loanAmount / btcPrice).toFixed(2)}</h5>
+					<h5>BTC amount with DCA: {dcaBtcAmount}</h5>
+					<h5>Loan yield over DCA: <span className={differentialClass}>{((differential * 100)-100).toFixed(2)}%</span></h5>
 				  </>
 			}
 			

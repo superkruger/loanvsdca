@@ -1,3 +1,5 @@
+import {Row, Col} from 'react-bootstrap'
+
 import CagrButton from "./CagrButton"
 import CagrInput from "./CagrInput"
 
@@ -5,16 +7,25 @@ export default function Cagr () {
 
 	return (
 		<>
-			<td className="left">
-				<span>Bitcoin CAGR</span>
-			</td>
-			<td className="right">
+			<Row>
+				<Col sm={2} className="right">
+					<h4>Bitcoin CAGR</h4>
+				</Col>
 				<CagrButton amount={40}/>
 				<CagrButton amount={80}/>
 				<CagrButton amount={120}/>
 				<CagrButton amount={160}/>
 				<CagrInput/>
-			</td>
+			</Row>
+			<Row>
+				<Col sm={2}>
+				</Col>
+				<Col sm={10}>
+					<p>
+					
+					</p>
+				</Col>
+			</Row>
 		</>
 	)
 }

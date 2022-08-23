@@ -1,3 +1,5 @@
+import {Row, Col, Form} from 'react-bootstrap'
+
 import TermButton from "./TermButton"
 import TermInput from "./TermInput"
 
@@ -5,16 +7,25 @@ export default function Term () {
 
 	return (
 		<>
-			<td className="left">
-				<span>Term</span>
-			</td>
-			<td className="right">
+			<Row>
+				<Col sm={2} className="right">
+					<h4>Term</h4>
+				</Col>
 				<TermButton amount={5}/>
 				<TermButton amount={6}/>
 				<TermButton amount={7}/>
 				<TermButton amount={8}/>
 				<TermInput/>
-			</td>
+			</Row>
+			<Row>
+				<Col sm={2}>
+				</Col>
+				<Col sm={10}>
+					<p>
+					
+					</p>
+				</Col>
+			</Row>
 		</>
 	)
 }

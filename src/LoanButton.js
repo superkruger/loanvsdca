@@ -1,18 +1,23 @@
 import {useContext} from "react"
+import {Col, Button} from 'react-bootstrap'
 import clsx from "clsx"
-import {PrincipalContext} from "./Context"
+import {LoanContext} from "./Context"
 
 export default function LoanButton (props) {
 
 	const {amount} = props
-	const {loanAmount, setLoanAmount} = useContext(PrincipalContext)
-	const cls = clsx({horizontalbutton: true, selected: loanAmount === amount})
+	const {loanAmount, setLoanAmount} = useContext(LoanContext)
 
 	function handleButtonClicked () {
 		setLoanAmount(amount)
 	}
 
 	return (
-		<button className={cls} onClick={handleButtonClicked}>${amount}</button>
+		<Col sm={2}>
+			{loanAmount === amount
+				? <Button variant="outline-primary" size="lg" onClick={handleButtonClicked} active>${amount}</Button>
+				: <Button variant="outline-primary" size="lg" onClick={handleButtonClicked}>${amount}</Button>
+			}
+		</Col>
 	)
 }

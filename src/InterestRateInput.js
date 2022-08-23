@@ -1,4 +1,5 @@
 import {useContext, useState} from "react"
+import {Col, Form} from 'react-bootstrap'
 import clsx from "clsx"
 import {InterestRateContext} from "./Context"
 
@@ -26,6 +27,8 @@ export default function LoanInput (props) {
 	}
 
 	return (
-		<input type="text" placeholder="Custom Rate" className={cls} onChange={handleInputChanged} onClick={handleInputClicked}/>
+		<Col sm={2}>
+			<Form.Control type="text" placeholder="Custom Rate" onChange={handleInputChanged} onClick={handleInputClicked}/>
+		</Col>
 	)
 }

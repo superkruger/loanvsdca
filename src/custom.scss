@@ -1,0 +1,40 @@
+/* The following block can be included in a custom.scss */
+
+/* make the customizations */
+$theme-colors: (
+    "primary": #000000
+);
+
+$body-bg: #FFE500;
+$body-color: #000000;
+
+.red {
+  color: red;
+  font-weight: bold;
+}
+
+.green {
+  color: green;
+  font-weight: bold;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.selected {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.App {
+  text-align: center;
+}
+
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";

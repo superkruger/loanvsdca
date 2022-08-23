@@ -1,4 +1,5 @@
 import {useContext} from "react"
+import {Col, Button} from 'react-bootstrap'
 import clsx from "clsx"
 import {TermContext} from "./Context"
 
@@ -13,6 +14,12 @@ export default function TermButton (props) {
 	}
 
 	return (
-		<button className={cls} onClick={handleButtonClicked}>{amount} years</button>
+		<Col sm={2}>
+			{term === amount
+				? <Button variant="outline-primary" size="lg" onClick={handleButtonClicked} active>{amount} years</Button>
+				: <Button variant="outline-primary" size="lg" onClick={handleButtonClicked}>{amount} years</Button>
+
+			}
+		</Col>
 	)
 }

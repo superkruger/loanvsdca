@@ -1,3 +1,5 @@
+
+
 .relative {
  position: relative;
  background-color: #fff;
@@ -45,7 +47,12 @@
 }
 
 .selected {
-  background-color: #A8162A;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.info {
+  font-weight: bold;
 }
 
 .red {

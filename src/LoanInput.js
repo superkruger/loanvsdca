@@ -1,11 +1,12 @@
 import {useContext, useState} from "react"
+import {Col, Form} from 'react-bootstrap'
 import clsx from "clsx"
-import {PrincipalContext} from "./Context"
+import {LoanContext} from "./Context"
 
 export default function LoanInput (props) {
 
 	const [inputAmount, setInputAmount] = useState(0)
-	const {loanAmount, setLoanAmount} = useContext(PrincipalContext)
+	const {loanAmount, setLoanAmount} = useContext(LoanContext)
 	const cls = clsx({horizontalinput: true, selected: loanAmount === inputAmount})
 
 
@@ -26,6 +27,8 @@ export default function LoanInput (props) {
 	}
 
 	return (
-		<input type="text" placeholder="Custom Amount" className={cls} onChange={handleInputChanged} onClick={handleInputClicked}/>
+		<Col sm={2}>
+			<Form.Control type="text" placeholder="Custom Amount" onChange={handleInputChanged} onClick={handleInputClicked}/>
+		</Col>
 	)
 }

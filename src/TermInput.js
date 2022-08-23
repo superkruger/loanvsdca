@@ -1,4 +1,5 @@
 import {useContext, useState} from "react"
+import {Col, Form} from 'react-bootstrap'
 import clsx from "clsx"
 import {TermContext} from "./Context"
 
@@ -6,7 +7,7 @@ export default function TermInput (props) {
 
 	const [inputAmount, setInputAmount] = useState(0)
 	const {term, setTerm} = useContext(TermContext)
-	const cls = clsx({horizontalinput: true, selected: term === inputAmount})
+	const cls = clsx({horizontalinput: false, selected: term === inputAmount})
 
 
 	function handleInputChanged (event) {
@@ -26,6 +27,8 @@ export default function TermInput (props) {
 	}
 
 	return (
-		<input type="text" placeholder="Custom Term" className={cls} onChange={handleInputChanged} onClick={handleInputClicked}/>
+		<Col sm={2}>
+			<Form.Control type="text" placeholder="Custom Term" onChange={handleInputChanged} onClick={handleInputClicked} active/>
+		</Col>
 	)
 }
