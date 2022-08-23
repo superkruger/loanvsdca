@@ -9,7 +9,7 @@ export default function InterestRate () {
 		<>
 			<Row>
 				<Col sm={2} className="right">
-					<h4>Interest Rate</h4>
+					<h5>Interest Rate</h5>
 				</Col>
 				<InterestRateButton amount={6}/>
 				<InterestRateButton amount={9}/>

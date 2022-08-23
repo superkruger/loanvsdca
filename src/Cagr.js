@@ -9,7 +9,7 @@ export default function Cagr () {
 		<>
 			<Row>
 				<Col sm={2} className="right">
-					<h4>Bitcoin CAGR</h4>
+					<h5>Bitcoin CAGR</h5>
 				</Col>
 				<CagrButton amount={40}/>
 				<CagrButton amount={80}/>

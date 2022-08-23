@@ -3,6 +3,8 @@ import {Col, Button} from 'react-bootstrap'
 import clsx from "clsx"
 import {LoanContext} from "./Context"
 
+import {formatUSD} from "./helpers"
+
 export default function LoanButton (props) {
 
 	const {amount} = props
@@ -15,8 +17,8 @@ export default function LoanButton (props) {
 	return (
 		<Col sm={2}>
 			{loanAmount === amount
-				? <Button variant="outline-primary" size="lg" onClick={handleButtonClicked} active>${amount}</Button>
-				: <Button variant="outline-primary" size="lg" onClick={handleButtonClicked}>${amount}</Button>
+				? <Button variant="outline-primary" size="sm" onClick={handleButtonClicked} active>{formatUSD(amount)}</Button>
+				: <Button variant="outline-primary" size="sm" onClick={handleButtonClicked}>{formatUSD(amount)}</Button>
 			}
 		</Col>
 	)

@@ -15,10 +15,18 @@ export default function TermInput (props) {
 
 		let value = event.target.value
 
+		console.log("cagr in", value)
+
+		if (value == "") {
+			value = "0"
+		}
+
+
+		console.log("cagr", value)
 
 		if (value.match(/^[0-9]+$/)) {
-			setCagr(value)
-			setInputAmount(value)
+			setCagr(Number(value))
+			setInputAmount(Number(value))
 		}
 	}
 

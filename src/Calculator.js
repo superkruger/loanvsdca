@@ -8,6 +8,8 @@ import Term from "./Term"
 import Cagr from "./Cagr"
 import {LoanContext, InterestRateContext, TermContext, CagrContext} from "./Context"
 
+import {formatUSD} from "./helpers"
+
 const LOANCOST = 1.0615
 
 export default function Calculator () {
@@ -60,7 +62,7 @@ export default function Calculator () {
 
 	function calculateRepayment() {
 
-		if (!loanAmount || !interestRate || !term || !cagr) {
+		if (!loanAmount || !interestRate || !term || !cagr || cagr == 0) {
 			return
 		}
 
@@ -99,16 +101,13 @@ export default function Calculator () {
 			
 			</Container>
 			</Form>
-			<p>BTC Price: ${btcPrice}</p>
-			{/*<p>Loan Amount: ${loanAmount}</p>
-			<p>Interest Rate: {interestRate}%</p>
-			<p>Term: {term} years</p>*/}
+			<p>BTC Price: {formatUSD(btcPrice)}</p>
 
-			{!loanAmount || !interestRate || !term || !cagr || isNaN(differential) || !(typeof differential === 'number') || !Number.isFinite(differential)
+			{!loanAmount || !interestRate || !term || !cagr || cagr == 0 || isNaN(differential) || !(typeof differential === 'number') || !Number.isFinite(differential)
 				? <></>
 				: <>
-					<p>Monthly repayment: ${repayment}</p>
-					<p>Total loan cost: ${(repayment * term * 12).toFixed(2)}</p>
+					<p>Monthly repayment: {formatUSD(repayment)}</p>
+					<p>Total loan cost: {formatUSD(repayment * term * 12)}</p>
 					<h5>BTC amount with loan: {(loanAmount / btcPrice).toFixed(2)}</h5>
 					<h5>BTC amount with DCA: {dcaBtcAmount}</h5>
 					<h5>Loan yield over DCA: <span className={differentialClass}>{((differential * 100)-100).toFixed(2)}%</span></h5>

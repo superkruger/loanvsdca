@@ -9,7 +9,7 @@ export default function Term () {
 		<>
 			<Row>
 				<Col sm={2} className="right">
-					<h4>Term</h4>
+					<h5>Term</h5>
 				</Col>
 				<TermButton amount={5}/>
 				<TermButton amount={6}/>

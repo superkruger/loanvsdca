@@ -15,8 +15,8 @@ export default function CagrButton (props) {
 	return (
 		<Col sm={2}>
 			{cagr === amount
-				? <Button variant="outline-primary" size="lg" onClick={handleButtonClicked} active>{amount}%</Button>
-				: <Button variant="outline-primary" size="lg" onClick={handleButtonClicked}>{amount}%</Button>
+				? <Button variant="outline-primary" size="sm" onClick={handleButtonClicked} active>{amount}%</Button>
+				: <Button variant="outline-primary" size="sm" onClick={handleButtonClicked}>{amount}%</Button>
 			}
 		</Col>
 	)

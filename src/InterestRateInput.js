@@ -15,6 +15,9 @@ export default function LoanInput (props) {
 
 		let value = event.target.value
 
+		if (value == "") {
+			value = "0"
+		}
 
 		if (value.match(/^[0-9]+$/)) {
 			setInterestRate(value)

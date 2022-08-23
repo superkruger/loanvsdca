@@ -9,7 +9,7 @@ export default function Loan () {
 		<>
 			<Row>
 				<Col sm={2} className="right">
-					<h4>Loan Amount</h4>
+					<h5>Loan Amount</h5>
 				</Col>
 				<LoanButton amount={10000}/>
 				<LoanButton amount={25000}/>
