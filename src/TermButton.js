@@ -14,12 +14,12 @@ export default function TermButton (props) {
 	}
 
 	return (
-		<Col sm={2}>
+		<>
 			{term === amount
-				? <Button variant="outline-primary" size="sm" onClick={handleButtonClicked} active>{amount} years</Button>
-				: <Button variant="outline-primary" size="sm" onClick={handleButtonClicked}>{amount} years</Button>
+				? <Button variant="outline-primary" size="sm" onClick={handleButtonClicked} active>{amount} yrs</Button>
+				: <Button variant="outline-primary" size="sm" onClick={handleButtonClicked}>{amount} yrs</Button>
 
 			}
-		</Col>
+		</>
 	)
 }

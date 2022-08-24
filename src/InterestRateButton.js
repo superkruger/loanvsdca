@@ -13,11 +13,11 @@ export default function InterestRateButton (props) {
 	}
 
 	return (
-		<Col sm={2}>
+		<>
 			{interestRate === amount
 				? <Button variant="outline-primary" size="sm" onClick={handleButtonClicked} active>{amount}%</Button>
 				: <Button variant="outline-primary" size="sm" onClick={handleButtonClicked}>{amount}%</Button>
 			}
-		</Col>
+		</>
 	)
 }

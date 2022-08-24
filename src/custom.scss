@@ -5,6 +5,18 @@ $theme-colors: (
     "primary": #000000
 );
 
+/*
+$font-size-base: 0.9rem;
+*/
+
+.text-muted {
+    font-size: 0.7rem;
+}
+
+.btn {
+    margin-right: 5px;
+}
+
 .red {
   color: red;
   font-weight: bold;
@@ -23,15 +35,36 @@ $theme-colors: (
   text-align: right;
 }
 
-.selected {
-  background-color: #000000;
-  color: #ffffff;
+.selectedinput {
+  font-wieight: bold;
 }
 
 .App {
   text-align: center;
+  border-style: solid;
+  color: #000000;
 }
 
+.calculator {
+    margin: 5px;
+}
 
 /* import bootstrap to set changes */
+
+
+/*
 @import "~bootstrap/scss/bootstrap";
+*/
+
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/_mixins";
+@import "~bootstrap/scss/bootstrap-grid.scss";
+@import "~bootstrap/scss/_buttons";
+@import "~bootstrap/scss/_button-group";
+@import "~bootstrap/scss/_card";
+@import "~bootstrap/scss/_containers";
+@import "~bootstrap/scss/_grid";
+@import "~bootstrap/scss/_forms";
+@import "~bootstrap/scss/_tables";

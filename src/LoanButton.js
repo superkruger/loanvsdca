@@ -10,16 +10,18 @@ export default function LoanButton (props) {
 	const {amount} = props
 	const {loanAmount, setLoanAmount} = useContext(LoanContext)
 
+	let displayAmount = amount / 1000
+
 	function handleButtonClicked () {
 		setLoanAmount(amount)
 	}
 
 	return (
-		<Col sm={2}>
+		<>
 			{loanAmount === amount
-				? <Button variant="outline-primary" size="sm" onClick={handleButtonClicked} active>{formatUSD(amount)}</Button>
-				: <Button variant="outline-primary" size="sm" onClick={handleButtonClicked}>{formatUSD(amount)}</Button>
+				? <Button variant="outline-primary" size="sm" onClick={handleButtonClicked} active>{formatUSD(displayAmount)}K</Button>
+				: <Button variant="outline-primary" size="sm" onClick={handleButtonClicked}>{formatUSD(displayAmount)}K</Button>
 			}
-		</Col>
+		</>
 	)
 }

@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
 import clsx from "clsx"
-import {Container, Row, Col, Form} from 'react-bootstrap'
+import {Card, Container, Row, Col, Form, Table} from 'react-bootstrap'
 
 import Loan from "./Loan"
 import InterestRate from "./InterestRate"
@@ -26,6 +26,8 @@ export default function Calculator () {
 	let dcaBtcAmount = 0
 	let differential = 0
 	let differentialClass = clsx({green: differential >= 1, red: differential < 1})
+	let projectedBtcPrice = 0
+	let inValidCalculation = true
 
 	useEffect(() => {
 	    fetch("https://blockchain.info/ticker")
@@ -48,10 +50,12 @@ export default function Calculator () {
 		const yearlyLoanCost = payment * 12
 		let cagrBtcPrice = btcPrice
 		let btcAmount = 0
+		projectedBtcPrice = btcPrice
 
 		for (let year = 0; year < term; ++year) {
 			btcAmount = btcAmount + (yearlyLoanCost / cagrBtcPrice)
 			cagrBtcPrice = cagrBtcPrice * (1 + (cagr / 100))
+			projectedBtcPrice = projectedBtcPrice * (1 + (cagr / 100))
 		}
 
 		dcaBtcAmount = btcAmount.toFixed(2)
@@ -74,46 +78,139 @@ export default function Calculator () {
 
 		repayment = payment
 		calculateDCA(payment)
+
+		inValidCalculation = !loanAmount || !interestRate || !term || !cagr || cagr == 0 || isNaN(differential) || !(typeof differential === 'number') || !Number.isFinite(differential)
 	}
 
 	calculateRepayment()
 
 	return (
-		<>
+		<div className="calculator">
 			<Form>
-			<Container>
-			
-			<LoanContext.Provider value={{loanAmount, setLoanAmount}}>
-				<Loan />
-			</LoanContext.Provider>
-		
-			<InterestRateContext.Provider value={{interestRate, setInterestRate}}>
-				<InterestRate />
-			</InterestRateContext.Provider>
-		
-			<TermContext.Provider value={{term, setTerm}}>
-				<Term />
-			</TermContext.Provider>
-		
-			<CagrContext.Provider value={{cagr, setCagr}}>
-				<Cagr />
-			</CagrContext.Provider>
-			
-			</Container>
-			</Form>
-			<p>BTC Price: {formatUSD(btcPrice)}</p>
+				<Card bg="warning">
+				<Card.Header>
+					<Container>
 
-			{!loanAmount || !interestRate || !term || !cagr || cagr == 0 || isNaN(differential) || !(typeof differential === 'number') || !Number.isFinite(differential)
-				? <></>
-				: <>
-					<p>Monthly repayment: {formatUSD(repayment)}</p>
-					<p>Total loan cost: {formatUSD(repayment * term * 12)}</p>
-					<h5>BTC amount with loan: {(loanAmount / btcPrice).toFixed(2)}</h5>
-					<h5>BTC amount with DCA: {dcaBtcAmount}</h5>
-					<h5>Loan yield over DCA: <span className={differentialClass}>{((differential * 100)-100).toFixed(2)}%</span></h5>
-				  </>
-			}
-			
-		</>
+						<Row>
+							<Col sm={2}/>
+							<Col sm={10} className="left">
+								<table width="100%"><tbody>
+								<tr>
+									<th style={{width:"60%"}}></th>
+								</tr>
+								<tr>
+									<td><h4>Current BTC Price:</h4></td>
+									<td><h4>{formatUSD(btcPrice)}</h4></td>
+								</tr>
+								</tbody></table>
+							</Col>
+						</Row>
+					</Container>
+				</Card.Header>
+				<Card.Body>
+		          <Container>
+				
+					<LoanContext.Provider value={{loanAmount, setLoanAmount}}>
+						<Loan />
+					</LoanContext.Provider>
+				
+					<InterestRateContext.Provider value={{interestRate, setInterestRate}}>
+						<InterestRate />
+					</InterestRateContext.Provider>
+				
+					<TermContext.Provider value={{term, setTerm}}>
+						<Term />
+					</TermContext.Provider>
+				
+					<CagrContext.Provider value={{cagr, setCagr}}>
+						<Cagr />
+					</CagrContext.Provider>
+				
+					</Container>
+		      </Card.Body>
+				
+				</Card>
+			</Form>
+			<br/>
+
+			<Card bg="warning">
+			<Card.Body>
+
+			<Container>
+				
+
+					<Row>
+						<Col sm={12} className="left">
+
+							<Table striped bordered hover>
+						      <tbody>
+						        <tr>
+						          	<td><h6>Monthly repayment:</h6></td>
+									<td><h6>
+									{
+										inValidCalculation
+										? ""
+										: formatUSD(repayment)
+									}
+									</h6></td>
+						        </tr>
+						        <tr>
+						          	<td><h6>Total loan cost:</h6></td>
+									<td><h6>
+									{
+										inValidCalculation
+										? ""
+										: formatUSD(repayment * term * 12)
+									}
+									</h6></td>
+						        </tr>
+						        <tr>
+						          	<td><h6>Projected BTC price in {term} years:</h6></td>
+									<td><h6>
+									{
+										inValidCalculation
+										? ""
+										: formatUSD(projectedBtcPrice)
+									}
+									</h6></td>
+						        </tr>
+						        <tr>
+									<td><h6>BTC amount with loan:</h6></td>
+									<td><h6>
+									{
+										inValidCalculation
+										? ""
+										: (loanAmount / btcPrice).toFixed(2)
+									}
+									</h6></td>
+								</tr>
+								<tr>
+									<td><h6>BTC amount with DCA:</h6></td>
+									<td><h6>
+									{
+										inValidCalculation
+										? ""
+										: dcaBtcAmount
+									}
+									</h6></td>
+								</tr>
+								<tr>
+									<td><h6>Loan yield over DCA:</h6></td>
+									<td><h6>
+									{
+										inValidCalculation
+										? ""
+										: <span className={differentialClass}>{((differential * 100)-100).toFixed(2)}%</span>
+									}
+									</h6></td>
+								</tr>
+						      </tbody>
+						    </Table>
+						</Col>
+					</Row>
+			</Container>
+			</Card.Body>
+			</Card>
+		</div>
 	)
 }

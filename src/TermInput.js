@@ -1,13 +1,14 @@
 import {useContext, useState} from "react"
-import {Col, Form} from 'react-bootstrap'
+import {Col, Form, InputGroup} from 'react-bootstrap'
 import clsx from "clsx"
 import {TermContext} from "./Context"
 
 export default function TermInput (props) {
 
 	const [inputAmount, setInputAmount] = useState(0)
+	const [valid, setValid] = useState(true)
 	const {term, setTerm} = useContext(TermContext)
-	const cls = clsx({horizontalinput: false, selected: term === inputAmount})
+	const cls = clsx({selectedinput: term === inputAmount})
 
 
 	function handleInputChanged (event) {
@@ -22,6 +23,9 @@ export default function TermInput (props) {
 		if (value.match(/^[0-9]+$/)) {
 			setTerm(value)
 			setInputAmount(value)
+			setValid(true)
+		} else {
+			setValid(false)
 		}
 	}
 
@@ -30,8 +34,19 @@ export default function TermInput (props) {
 	}
 
 	return (
-		<Col sm={2}>
-			<Form.Control type="text" placeholder="Custom Term" onChange={handleInputChanged} onClick={handleInputClicked}/>
-		</Col>
+		<>
+			<InputGroup hasValidation>
+				{
+					valid
+					? <Form.Control className={cls} type="text" placeholder="or a custom term" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					: <Form.Control isInvalid className={cls} type="text" placeholder="or a custom term" onChange={handleInputChanged} onClick={handleInputClicked}/>
+				}
+				
+		        <InputGroup.Text>yrs</InputGroup.Text>
+		        <Form.Control.Feedback type="invalid">
+	              Only numbers are allowed
+	            </Form.Control.Feedback>
+		    </InputGroup>
+		</>
 	)
 }

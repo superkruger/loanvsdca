@@ -1,13 +1,14 @@
 import {useContext, useState} from "react"
-import {Col, Form} from 'react-bootstrap'
+import {Col, Form, InputGroup} from 'react-bootstrap'
 import clsx from "clsx"
 import {LoanContext} from "./Context"
 
 export default function LoanInput (props) {
 
 	const [inputAmount, setInputAmount] = useState(0)
+	const [valid, setValid] = useState(true)
 	const {loanAmount, setLoanAmount} = useContext(LoanContext)
-	const cls = clsx({horizontalinput: true, selected: loanAmount === inputAmount})
+	const cls = clsx({selectedinput: loanAmount === inputAmount})
 
 
 	function handleInputChanged (event) {
@@ -22,7 +23,10 @@ export default function LoanInput (props) {
 		if (value.match(/^[0-9]+$/)) {
 			setLoanAmount(value)
 			setInputAmount(value)
-		}	
+			setValid(true)
+		} else {
+			setValid(false)
+		}
 	}
 
 	function handleInputClicked () {
@@ -30,8 +34,18 @@ export default function LoanInput (props) {
 	}
 
 	return (
-		<Col sm={2}>
-			<Form.Control type="text" placeholder="Custom Amount" onChange={handleInputChanged} onClick={handleInputClicked}/>
-		</Col>
+		<>
+			<InputGroup hasValidation>
+		        <InputGroup.Text>$</InputGroup.Text>
+				{
+					valid
+					? <Form.Control className={cls} type="text" placeholder="or a custom loan amount" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					: <Form.Control isInvalid className={cls} type="text" placeholder="or a custom loan amount" onChange={handleInputChanged} onClick={handleInputClicked}/>
+				}
+		        <Form.Control.Feedback type="invalid">
+	              Only numbers are allowed
+	            </Form.Control.Feedback>
+		    </InputGroup>
+		</>
 	)
 }
