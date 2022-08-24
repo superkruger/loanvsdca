@@ -10,7 +10,7 @@ export default function Term () {
 	return (
 		<>
 			<Row>
-				<Col sm={2} className="left">
+				<Col className="left">
 					Term
 				</Col>
 				<Col sm={10}>

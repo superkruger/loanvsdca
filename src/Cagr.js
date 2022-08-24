@@ -11,7 +11,7 @@ export default function Cagr () {
 		<>
 
 			<Row>
-				<Col sm={2} className="left">
+				<Col className="left">
 					Bitcoin CAGR
 				</Col>
 				<Col sm={10}>

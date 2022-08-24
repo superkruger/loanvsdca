@@ -10,7 +10,7 @@ export default function Loan () {
 	return (
 		<>
 			<Row>
-				<Col sm={2} className="left">
+				<Col className="left">
 					Loan Amount
 				</Col>
 				<Col sm={10}>

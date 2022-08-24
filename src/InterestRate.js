@@ -10,7 +10,7 @@ export default function InterestRate () {
 	return (
 		<>
 			<Row>
-				<Col sm={2} className="left">
+				<Col className="left">
 					Interest Rate
 				</Col>
 				<Col sm={10}>
