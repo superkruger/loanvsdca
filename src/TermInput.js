@@ -20,7 +20,7 @@ export default function TermInput (props) {
 			value = "0"
 		}
 
-		if (value.match(/^[0-9]+$/)) {
+		if (value.match(/^[0-9]+$/) && event.target.checkValidity()) {
 			setTerm(value)
 			setInputAmount(value)
 			setValid(true)
@@ -38,8 +38,8 @@ export default function TermInput (props) {
 			<InputGroup hasValidation>
 				{
 					valid
-					? <Form.Control className={cls} type="number" placeholder="or a custom term" onChange={handleInputChanged} onClick={handleInputClicked}/>
-					: <Form.Control isInvalid className={cls} type="number" placeholder="or a custom term" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					? <Form.Control className={cls} type="number" placeholder="or a custom term" onKeyUp={handleInputChanged} onClick={handleInputClicked}/>
+					: <Form.Control isInvalid className={cls} type="number" placeholder="or a custom term" onKeyUp={handleInputChanged} onClick={handleInputClicked}/>
 				}
 		        <InputGroup.Text>yrs</InputGroup.Text>
 		        <Form.Control.Feedback type="invalid">

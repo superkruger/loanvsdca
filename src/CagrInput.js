@@ -20,7 +20,7 @@ export default function TermInput (props) {
 			value = "0"
 		}
 
-		if (value.match(/^[0-9]+$/)) {
+		if (value.match(/^[0-9]+$/) && event.target.checkValidity()) {
 			setCagr(Number(value))
 			setInputAmount(Number(value))
 			setValid(true)
@@ -38,8 +38,8 @@ export default function TermInput (props) {
 			<InputGroup hasValidation>
 				{
 					valid
-					? <Form.Control type="number" className={cls} placeholder="or a custom cagr" onChange={handleInputChanged} onClick={handleInputClicked}/>
-					: <Form.Control isInvalid type="number" className={cls} placeholder="or a custom cagr" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					? <Form.Control type="number" className={cls} placeholder="or a custom cagr" onKeyUp={handleInputChanged} onClick={handleInputClicked}/>
+					: <Form.Control isInvalid type="number" className={cls} placeholder="or a custom cagr" onKeyUp={handleInputChanged} onClick={handleInputClicked}/>
 				}
 		        <InputGroup.Text>%</InputGroup.Text>
 		        <Form.Control.Feedback type="invalid">
