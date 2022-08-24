@@ -38,8 +38,8 @@ export default function TermInput (props) {
 			<InputGroup hasValidation>
 				{
 					valid
-					? <Form.Control type="text" className={cls} placeholder="or a custom cagr" onChange={handleInputChanged} onClick={handleInputClicked}/>
-					: <Form.Control isInvalid type="text" className={cls} placeholder="or a custom cagr" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					? <Form.Control type="number" className={cls} placeholder="or a custom cagr" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					: <Form.Control isInvalid type="number" className={cls} placeholder="or a custom cagr" onChange={handleInputChanged} onClick={handleInputClicked}/>
 				}
 		        <InputGroup.Text>%</InputGroup.Text>
 		        <Form.Control.Feedback type="invalid">

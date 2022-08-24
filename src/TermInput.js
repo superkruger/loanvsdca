@@ -38,10 +38,9 @@ export default function TermInput (props) {
 			<InputGroup hasValidation>
 				{
 					valid
-					? <Form.Control className={cls} type="text" placeholder="or a custom term" onChange={handleInputChanged} onClick={handleInputClicked}/>
-					: <Form.Control isInvalid className={cls} type="text" placeholder="or a custom term" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					? <Form.Control className={cls} type="number" placeholder="or a custom term" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					: <Form.Control isInvalid className={cls} type="number" placeholder="or a custom term" onChange={handleInputChanged} onClick={handleInputClicked}/>
 				}
-				
 		        <InputGroup.Text>yrs</InputGroup.Text>
 		        <Form.Control.Feedback type="invalid">
 	              Only numbers are allowed

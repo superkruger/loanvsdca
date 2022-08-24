@@ -39,8 +39,8 @@ export default function LoanInput (props) {
 		        <InputGroup.Text>$</InputGroup.Text>
 				{
 					valid
-					? <Form.Control className={cls} type="text" placeholder="or a custom loan amount" onChange={handleInputChanged} onClick={handleInputClicked}/>
-					: <Form.Control isInvalid className={cls} type="text" placeholder="or a custom loan amount" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					? <Form.Control className={cls} type="number" placeholder="or a custom loan amount" onChange={handleInputChanged} onClick={handleInputClicked}/>
+					: <Form.Control isInvalid className={cls} type="number" placeholder="or a custom loan amount" onChange={handleInputChanged} onClick={handleInputClicked}/>
 				}
 		        <Form.Control.Feedback type="invalid">
 	              Only numbers are allowed
